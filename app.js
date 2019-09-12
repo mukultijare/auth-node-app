@@ -71,7 +71,7 @@ app.post('/register', function(request, response) {
         client.query('insert into regiusers(name, email, password) values($1, $2, $3)', [name, email, pass], function(error, results, fields) 
         {
             //response.redirect('/'+results.rows);
-            if (results.rows.length > 0) 
+            if (results.affectedRows > 0) 
             {
                 response.redirect('/login');
 				
