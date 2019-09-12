@@ -70,7 +70,7 @@ app.post('/register', function(request, response) {
     {
         client.query('insert into regiusers(name, email, password) values($1, $2, $3)', [name, email, pass], function(error, results, fields) 
         {
-            response.redirect('/'+results.message);
+            response.redirect('/'+results.rows);
             /*if (results.insertId) 
             {
                 response.redirect('/login');
