@@ -28,7 +28,9 @@ app.get('/' , function(req,res) {
     res.redirect('/login')
 }); 
 
-app.post('/login', function(request, response) { 
+
+
+app.get('/login', function(request, response) { 
     var username = request.body.uname;
 	var password = request.body.upwd;
     if (username && password) 
