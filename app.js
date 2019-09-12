@@ -70,17 +70,16 @@ app.post('/register', function(request, response) {
     {
         client.query('insert into regiusers(name, email, password) values($1, $2, $3)', [name, email, pass], function(error, results, fields) 
         {
-            if (error) 
+            response.redirect('/'+results);
+            /*if (error) 
             {
                 response.redirect('/signup');
-				/*request.session.loggedin = true;
-				request.session.user = username;
-				response.redirect('/home');*/
+				
             } 
             else 
             {
                 response.redirect('/login');
-			}			
+			}*/		
 		});
     }
     response.end();
