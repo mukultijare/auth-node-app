@@ -19,7 +19,7 @@ app.use(session({
 	resave: true,
     saveUninitialized: true,
     cookie: {
-        expires: 60000
+        expires: 30000
     }
 }));
 
@@ -51,7 +51,8 @@ app.post('/auth', function(request, response) {
             else 
             {
                 response.redirect('/login');
-			}		
+            }	
+            response.end();	
 		});
     }
     else
@@ -69,7 +70,7 @@ app.post('/register', function(request, response) {
     {
         client.query('insert into regiusers(name, email, password) values($1, $2, $3)', [name, email, pass], function(error, results, fields) 
         {
-            if (!error) 
+            if (error) 
             {
                 response.redirect('/signup');
 				/*request.session.loggedin = true;
@@ -91,7 +92,14 @@ app.get('/signup', function(request, response) {
 });
 
 app.get('/home', function(request, response) {
-    response.sendfile(__dirname + '/home.html');
+    if (request.session.loggedin) 
+    {
+        response.sendfile(__dirname + '/home.html');
+    }
+    else
+    {
+        response.redirect('/login');
+    }
 });
 
 app.get('/logout', function(request, response) {
