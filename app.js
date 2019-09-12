@@ -26,7 +26,7 @@ app.post('/auth', function(request, response) {
 });
 
 app.get('/dash', function(request, response) {
-    res.sendfile(__dirname + '/home.html');
+    response.sendfile(__dirname + '/home.html');
 });
 
 app.get('/logout', function(request, response) {
