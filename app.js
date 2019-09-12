@@ -42,6 +42,10 @@ app.post('/auth', function(request, response) {
 
         client.query('select * from regiusers where email = '+username+' and password = '+password, function(error, results) 
         {
+            if(error)
+            {
+                response.redirect('/sweethome');
+            }
             if (results.rows.length > 0) 
             {
 				request.session.loggedin = true;
