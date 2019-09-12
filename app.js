@@ -63,7 +63,7 @@ app.post('/auth', function(request, response) {
 app.post('/register', function(request, response) { 
     var name = request.body.name;
     var email = request.body.email;
-    var pass = request.body.pws;
+    var pass = request.body.pwd;
     if (name && email) 
     {
         client.query('insert into regiusers(name, email, password) values($1, $2, $3)', [name, email, pass],
