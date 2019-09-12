@@ -25,7 +25,7 @@ app.use(session({
 }));
 
 app.get('/' , function(req,res) {
-    res.sendfile(__dirname + '/login.html');
+    res.redirect('/login')
 }); 
 
 app.post('/login', function(request, response) { 
@@ -36,7 +36,11 @@ app.post('/login', function(request, response) {
 
         
 		response.redirect('/dash');
-	}
+    }
+    else
+    {
+        response.sendfile(__dirname + '/login.html');
+    }
 });
 
 app.get('/signup', function(request, response) {
