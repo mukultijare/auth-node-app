@@ -52,12 +52,12 @@ app.post('/auth', function(request, response) {
             {
                 response.redirect('/login');
 			}		
-		});
+		});*/
     }
     else
     {
         response.sendfile(__dirname + '/login.html');
-    }*/
+    }
     response.end();
 });
 
