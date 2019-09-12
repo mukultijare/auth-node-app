@@ -3,18 +3,8 @@ var express = require('express'),
     
     app = express();
     
-
-const session = require('express-session');
 var port = process.env.PORT || 3000;
 
-app.use(session({
-	secret: 'secret',
-	resave: true,
-    saveUninitialized: true,
-    cookie: {
-        expires: 60000
-    }
-}));
 
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
