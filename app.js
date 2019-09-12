@@ -106,7 +106,7 @@ app.get('/logout', function(request, response) {
     if (request.session.loggedin) 
     {
         request.session.destroy();
-        res.clearCookie();
+        response.clearCookie();
         response.redirect('/login');
     } 
     else 
