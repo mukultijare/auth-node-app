@@ -35,12 +35,12 @@ app.get('/login', function(request, response){
 app.post('/auth', function(request, response) { 
     var username = request.body.uname;
     var password = request.body.upwd;
-    response.redirect('/'+username.length);
-    /*if (username && password) 
+    //response.redirect('/'+username.length);
+    if (username.length > 0 && password.length > 0) 
     {
-        //response.redirect('/home');
+        response.redirect('/home');
 
-        client.query('select * from regiusers where email = $1 and password = $2', [username, password], function(error, results) 
+        /*client.query('select * from regiusers where email = $1 and password = $2', [username, password], function(error, results) 
         {
             if (results.rows.length > 0) 
             {
