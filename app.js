@@ -25,19 +25,19 @@ app.use(session({
 }));
 
 app.get('/' , function(req,res) {
-    res.redirect('/login')
+    res.redirect(307, '/login');
 }); 
 
 
 
-app.get('/login', function(request, response) { 
+app.post('/login', function(request, response) { 
     var username = request.body.uname;
 	var password = request.body.upwd;
     if (username && password) 
     {
 
         
-		response.redirect('/dash');
+		response.redirect('/home');
     }
     else
     {
@@ -45,11 +45,13 @@ app.get('/login', function(request, response) {
     }
 });
 
+
+
 app.get('/signup', function(request, response) {
     response.sendfile(__dirname + '/signup.html');
 });
 
-app.get('/dash', function(request, response) {
+app.get('/home', function(request, response) {
     response.sendfile(__dirname + '/home.html');
 });
 
