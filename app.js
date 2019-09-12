@@ -70,17 +70,18 @@ app.post('/register', function(request, response) {
     {
         client.query('insert into regiusers(name, email, password) values($1, $2, $3)', [name, email, pass], function(error, results, fields) 
         {
-            //response.redirect('/'+results.rows);
-            if (results.rows) 
+            client.query('select * from regiusers where email = $1 and password = $2', [email, pass], function(errors, result) 
             {
-                response.redirect('/login');
-				
-            } 
-            else 
-            {
-                response.redirect('/signup');
-            }
-            response.end();
+                if (result.rows.length > 0) 
+                {
+                    response.redirect('/login');
+                } 
+                else 
+                {
+                    response.redirect('/signup');
+                }	
+                response.end();	
+            });
 		});
     }
 });
