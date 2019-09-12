@@ -19,7 +19,7 @@ app.use(session({
 	resave: true,
     saveUninitialized: true,
     cookie: {
-        expires: 30000
+        expires: 60000
     }
 }));
 
@@ -94,7 +94,8 @@ app.get('/signup', function(request, response) {
 app.get('/home', function(request, response) {
     if (request.session.loggedin) 
     {
-        response.sendfile(__dirname + '/home.html');
+
+        response.sendfile(__dirname + '/home.html', {name:request.session.user});
     }
     else
     {
