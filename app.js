@@ -33,11 +33,16 @@ app.get('/' , function(req,res) {
 }); 
 
 app.post('/auth', function(request, response) { 
-    
+    var username = request.body.user;
+	var password = request.body.upwd;
+    if (username == "Mukul") 
+    {
+		response.redirect('/dash');
+	}
 });
 
 app.get('/dash', function(request, response) {
-    
+    res.sendfile(__dirname + 'home.html');
 });
 
 app.get('/logout', function(request, response) {
