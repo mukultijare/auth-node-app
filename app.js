@@ -105,8 +105,8 @@ app.get('/home', function(request, response) {
 app.get('/logout', function(request, response) {
     if (request.session.loggedin) 
     {
-        
         request.session.destroy();
+        res.clearCookie();
         response.redirect('/login');
     } 
     else 
