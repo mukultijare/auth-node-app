@@ -35,7 +35,7 @@ app.get('/login', function(request, response){
 app.post('/auth', function(request, response) { 
     var username = request.body.uname;
 	var password = request.body.upwd;
-    if (username == "Mukul") 
+    if (username == "mukul@gmail.com") 
     {
         response.redirect('/home');
 
