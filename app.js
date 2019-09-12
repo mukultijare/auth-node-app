@@ -13,7 +13,7 @@ var client = new pg.Client(conString);
 client.connect();   
 
 app.get('/' , function(req,res) {
-    res.sendfile(__dirname + 'index.html');
+    res.sendfile(__dirname + '/index.html');
 }); 
 
 app.post('/auth', function(request, response) { 
@@ -26,7 +26,7 @@ app.post('/auth', function(request, response) {
 });
 
 app.get('/dash', function(request, response) {
-    res.sendfile(__dirname + 'home.html');
+    res.sendfile(__dirname + '/home.html');
 });
 
 app.get('/logout', function(request, response) {
