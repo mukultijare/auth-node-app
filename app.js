@@ -25,15 +25,18 @@ app.use(session({
 }));
 
 app.get('/' , function(request,response) {
-    response.sendfile(__dirname + '/login.html');
+    response.redirect('/login');
 }); 
 
+app.get('/login', function(request, response){
+    response.sendfile(__dirname + '/login.html');
+});
 
 
-app.post('/login', function(request, response) { 
+app.post('/auth', function(request, response) { 
     var username = request.body.uname;
 	var password = request.body.upwd;
-    if (username && password) 
+    if (username == "Mukul") 
     {
 
         
@@ -43,8 +46,32 @@ app.post('/login', function(request, response) {
     {
         response.sendfile(__dirname + '/login.html');
     }
+    response.end();
 });
 
+app.post('/register', function(request, response) { 
+    var name = request.body.name;
+    var email = request.body.email;
+    var pass = request.body.pws;
+    if (name && email) 
+    {
+        client.query('insert into regiusers(name, email, password) values($1, $2, $3)', [name, email, crypt(pass, gen_salt('md5'))],
+         function(error, results, fields) {
+            if (results.rows.length > 0) 
+            {
+                response.redirect('/login');
+				/*request.session.loggedin = true;
+				request.session.user = username;
+				response.redirect('/home');*/
+            } 
+            else 
+            {
+                response.redirect('/signup');
+			}			
+			response.end();
+		});
+    }
+});
 
 
 app.get('/signup', function(request, response) {
