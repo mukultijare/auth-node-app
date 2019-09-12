@@ -52,8 +52,6 @@ app.post('/auth', function(request, response) {
 			}			
 			response.end();
 		});
-        
-		response.redirect('/home');
     }
     else
     {
@@ -72,14 +70,14 @@ app.post('/register', function(request, response) {
          function(error, results, fields) {
             if (!error) 
             {
-                response.redirect('/login');
+                response.redirect('/signup');
 				/*request.session.loggedin = true;
 				request.session.user = username;
 				response.redirect('/home');*/
             } 
             else 
             {
-                response.redirect('/signup');
+                response.redirect('/login');
 			}			
 			response.end();
 		});
