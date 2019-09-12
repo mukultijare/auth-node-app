@@ -25,10 +25,10 @@ app.use(session({
 }));
 
 app.get('/' , function(req,res) {
-    res.sendfile(__dirname + '/index.html');
+    res.sendfile(__dirname + '/login.html');
 }); 
 
-app.post('/auth', function(request, response) { 
+app.post('/login', function(request, response) { 
     var username = request.body.uname;
 	var password = request.body.upwd;
     if (username && password) 
@@ -39,7 +39,7 @@ app.post('/auth', function(request, response) {
 	}
 });
 
-app.get('/dash', function(request, response) {
+app.get('/signup', function(request, response) {
     response.sendfile(__dirname + '/signup.html');
 });
 

@@ -90,24 +90,31 @@
 		</style>
 	</head>
 	<body>
-		<form action="auth" method="POST">			
-			<div class="container">
-				<label for="uname"><b>Username</b></label>
-				<input type="text" placeholder="Enter Username" name="uname" required>
-			
-				<label for="upwd"><b>Password</b></label>
-				<input type="password" placeholder="Enter Password" name="upwd" required>
-			
-				<button type="submit">Login</button>
-				<label>
-				<input type="checkbox" checked="checked" name="remember"> Remember me
-				</label>
+		<div class="row">
+			<div class="col-sm-3"></div>
+			<div class="col-sm-6">
+				<form action="login" method="POST">			
+					<div class="container">
+						<label for="uname"><b>Username</b></label>
+						<input type="text" placeholder="Enter Username" name="uname" required>
+					
+						<label for="upwd"><b>Password</b></label>
+						<input type="password" placeholder="Enter Password" name="upwd" required>
+					
+						<button type="submit">Login</button>
+						<label>
+						<input type="checkbox" checked="checked" name="remember"> Remember me
+						</label>
+					</div>
+					
+					<div class="container" style="background-color:#f1f1f1">
+						<button type="button" class="cancelbtn">Cancel</button>
+						<span class="psw">Not Registered Click Here <a href="/signup">Sign Up</a></span>
+					</div>
+				</form>
 			</div>
-			
-			<div class="container" style="background-color:#f1f1f1">
-				<button type="button" class="cancelbtn">Cancel</button>
-				<span class="psw">Not Registered Click Here <a href="/signup">Sign Up</a></span>
-			</div>
-		</form>
+			<div class="col-sm-3"></div>
+		</div>
+		
 	</body>
 </html>
