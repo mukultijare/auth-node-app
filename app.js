@@ -1,6 +1,6 @@
 var express = require('express'),
-    bodyParser = require('body-parser'),
-    
+    bodyParser = require('body-parser'),    
+    errorHandler = require('express-error-handler'),    
     app = express();
 
 
