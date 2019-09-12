@@ -95,7 +95,7 @@ app.get('/home', function(request, response) {
     if (request.session.loggedin) 
     {
 
-        response.sendfile(__dirname + '/home.html', {name:request.session.user});
+        response.sendfile(__dirname + '/home.html');
     }
     else
     {
