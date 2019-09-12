@@ -37,8 +37,8 @@ app.post('/auth', function(request, response) {
 	var password = request.body.upwd;
     if (username && password) 
     {
-        client.query('select * from regiusers where email = $1 and password = $2', [username, password],
-         function(error, results, fields) {
+        client.query('select * from regiusers where email = $1 and password = $2', [username, password], function(error, results, fields) 
+        {
             if (results.rows.length > 0) 
             {
 				request.session.loggedin = true;
@@ -64,8 +64,8 @@ app.post('/register', function(request, response) {
     var pass = request.body.pwd;
     if (name && email) 
     {
-        client.query('insert into regiusers(name, email, password) values($1, $2, $3)', [name, email, pass],
-         function(error, results, fields) {
+        client.query('insert into regiusers(name, email, password) values($1, $2, $3)', [name, email, pass], function(error, results, fields) 
+        {
             if (!error) 
             {
                 response.redirect('/signup');
