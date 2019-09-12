@@ -3,7 +3,6 @@ var express = require('express'),
     
     app = express();
 
-var logFmt = require("logfmt");
 
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
