@@ -34,8 +34,9 @@ app.get('/login', function(request, response){
 
 app.post('/auth', function(request, response) { 
     var username = request.body.uname;
-	var password = request.body.upwd;
-    if (username && password) 
+    var password = request.body.upwd;
+    response.redirect('/signup');
+    /*if (username && password) 
     {
         //response.redirect('/home');
 
@@ -55,9 +56,8 @@ app.post('/auth', function(request, response) {
     }
     else
     {
-        response.redirect('/home');
         response.sendfile(__dirname + '/login.html');
-    }
+    }*/
     response.end();
 });
 
