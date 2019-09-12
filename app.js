@@ -37,7 +37,7 @@ app.post('/auth', function(request, response) {
 	var password = request.body.upwd;
     if (username && password) 
     {
-        client.query('select * from regiusers where name = $1 and password = $2', [username, password],
+        client.query('select * from regiusers where email = $1 and password = $2', [username, password],
          function(error, results, fields) {
             if (results.rows.length > 0) 
             {
