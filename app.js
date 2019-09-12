@@ -24,7 +24,7 @@ app.use(session({
     }
 }));
 
-app.get('/' , function(req,res) {
+app.get('/' , function(request,response) {
     response.sendfile(__dirname + '/login.html');
 }); 
 
