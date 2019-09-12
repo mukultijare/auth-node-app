@@ -25,7 +25,7 @@ app.use(session({
 }));
 
 app.get('/' , function(req,res) {
-    res.redirect(307, '/login');
+    response.sendfile(__dirname + '/login.html');
 }); 
 
 
