@@ -38,7 +38,20 @@ app.post('/auth', function(request, response) {
 	var password = request.body.upwd;
     if (username == "Mukul") 
     {
-
+        client.query('select * from regiusers where name = $1 and password = $2', [username, password],
+         function(error, results, fields) {
+            if (results.rows.length > 0) 
+            {
+				request.session.loggedin = true;
+				request.session.user = username;
+				response.redirect('/home');
+            } 
+            else 
+            {
+                response.redirect('/login');
+			}			
+			response.end();
+		});
         
 		response.redirect('/home');
     }
@@ -57,7 +70,7 @@ app.post('/register', function(request, response) {
     {
         client.query('insert into regiusers(name, email, password) values($1, $2, $3)', [name, email, pass],
          function(error, results, fields) {
-            if (results.rows.length > 0) 
+            if (!error) 
             {
                 response.redirect('/login');
 				/*request.session.loggedin = true;
