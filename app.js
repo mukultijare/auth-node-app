@@ -70,19 +70,19 @@ app.post('/register', function(request, response) {
     {
         client.query('insert into regiusers(name, email, password) values($1, $2, $3)', [name, email, pass], function(error, results, fields) 
         {
-            response.redirect('/'+results.rows);
-            /*if (error) 
+            //response.redirect('/'+results.rows);
+            if (results.rows.length > 0) 
             {
-                response.redirect('/signup');
+                response.redirect('/login');
 				
             } 
             else 
             {
-                response.redirect('/login');
-			}*/		
+                response.redirect('/signup');
+            }	
+            response.end();
 		});
     }
-    response.end();
 });
 
 
@@ -102,7 +102,17 @@ app.get('/home', function(request, response) {
 });
 
 app.get('/logout', function(request, response) {
-    
+    if (request.session.loggedin) 
+    {
+        
+        request.session.destroy();
+        response.redirect('/login');
+    } 
+    else 
+    {
+        response.redirect('/login');
+	}
+	response.end();
 });
 
 app.set('port', process.env.PORT || 3001);
