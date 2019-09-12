@@ -1,8 +1,7 @@
 var express = require('express'),
     bodyParser = require('body-parser'),    
     errorHandler = require('express-error-handler'),    
-    app = express(),
-    crypto = require('crypto');
+    app = express();
 
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
@@ -49,8 +48,7 @@ app.post('/auth', function(request, response) {
             else 
             {
                 response.redirect('/login');
-			}			
-			response.end();
+			}		
 		});
     }
     else
@@ -79,9 +77,9 @@ app.post('/register', function(request, response) {
             {
                 response.redirect('/login');
 			}			
-			response.end();
 		});
     }
+    response.end();
 });
 
 
