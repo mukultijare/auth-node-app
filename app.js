@@ -35,7 +35,7 @@ app.get('/login', function(request, response){
 app.post('/auth', function(request, response) { 
     var username = request.body.uname;
 	var password = request.body.upwd;
-    if (username && password) 
+    if (username != null && password != null) 
     {
         //response.redirect('/home');
 
