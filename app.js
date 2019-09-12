@@ -1,8 +1,8 @@
 var express = require('express'),
     bodyParser = require('body-parser'),    
     errorHandler = require('express-error-handler'),    
-    app = express();
-
+    app = express(),
+    crypto = require('crypto');
 
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
@@ -55,7 +55,7 @@ app.post('/register', function(request, response) {
     var pass = request.body.pws;
     if (name && email) 
     {
-        client.query('insert into regiusers(name, email, password) values($1, $2, $3)', [name, email, crypt(pass, gen_salt('md5'))],
+        client.query('insert into regiusers(name, email, password) values($1, $2, $3)', [name, email, pass],
          function(error, results, fields) {
             if (results.rows.length > 0) 
             {

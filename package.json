@@ -10,9 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "crypto": "^1.0.1",
     "express": "^4.17.1",
-    "pg": "^7.12.1",    
     "express-error-handler": "*",
-    "express-session": "^1.16.2"
+    "express-session": "^1.16.2",
+    "pg": "^7.12.1"
   }
 }
