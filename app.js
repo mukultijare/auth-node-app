@@ -53,10 +53,8 @@ app.post('/auth', function(request, response) {
             {
 				request.session.loggedin = true;
                 request.session.user = username;
-                let users = { 
-                        name : request.session.user
-                    };
-                response.cookie("userData", users); 
+                
+                response.cookie("userData", request.session.user); 
 				response.redirect('/home');
             }
             else 

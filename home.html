@@ -1,8 +1,7 @@
 <html>
     <body>
         <h1>
-            Hello.....
-            
+            Hello.....   <p id="p1"></p>          
         </h1>
         <a href="/logout">Logout</a>
     </body>
@@ -18,10 +17,13 @@
             {
                 c = c.substring(1);
             }
-            if (c.indexOf(name) == 0) {
-                return c.substring(name.length, c.length);
+            if (c.indexOf(name) == 0) 
+            {
+                
+            var use = c.substring(name.length, c.length);
+            document.getElementById("p1").innerHTML = use;
+            console.log(use);
             }
-            console.log(c);
         }
     </script>
 </html>
