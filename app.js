@@ -3,7 +3,7 @@ var express = require('express'),
     errorHandler = require('express-error-handler'),    
     app = express();
 
-let cookieParser = require('cookie-encryption'); //parser
+let cookieParser = require('cookie-parser'); 
 app.use(cookieParser()); 
 
 app.use(bodyParser.urlencoded({extended : true}));
