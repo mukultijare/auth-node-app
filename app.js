@@ -3,7 +3,7 @@ var express = require('express'),
     errorHandler = require('express-error-handler'),    
     app = express();
 
-const storage = require('node-sessionstorage');
+
 
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
@@ -23,7 +23,7 @@ app.use(session({
 	resave: true,
     saveUninitialized: true,
     cookie: {
-        expires: 60000
+        expires: 120000
     }
 }));
 //--------------------------
@@ -52,8 +52,9 @@ app.post('/auth', function(request, response) {
             {
 				request.session.loggedin = true;
                 request.session.user = username;
-                
-                storage.setItem('foo', request.session.user);
+                var uname = 'Testing';
+                const storage = require('node-sessionstorage');
+                storage.setItem('foo', uname);
 				response.redirect('/home');
             }
             else 
