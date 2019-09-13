@@ -3,7 +3,8 @@ var express = require('express'),
     errorHandler = require('express-error-handler'),    
     app = express();
 
-
+let cookieParser = require('cookie-parser'); 
+app.use(cookieParser()); 
 
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
@@ -52,9 +53,10 @@ app.post('/auth', function(request, response) {
             {
 				request.session.loggedin = true;
                 request.session.user = username;
-                var uname = 'Testing';
-                var sessionstorage = require('sessionstorage');
-                sessionstorage.setItem('foo', uname);
+                let users = { 
+                        name : request.session.user
+                    };
+                response.cookie("userData", users); 
 				response.redirect('/home');
             }
             else 
