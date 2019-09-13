@@ -50,8 +50,7 @@ app.post('/auth', function(request, response) {
             {
 				request.session.loggedin = true;
                 request.session.user = username;
-                request.session.name = results.rows.name;
-				response.redirect('/'+ results.rows);
+				response.redirect('/home');
             } 
             else 
             {
