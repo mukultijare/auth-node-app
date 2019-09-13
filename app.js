@@ -3,6 +3,8 @@ var express = require('express'),
     errorHandler = require('express-error-handler'),    
     app = express();
 
+const storage = require('node-sessionstorage');
+
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
 
@@ -50,12 +52,14 @@ app.post('/auth', function(request, response) {
             {
 				request.session.loggedin = true;
                 request.session.user = username;
+                
+                storage.setItem('foo', request.session.user);
 				response.redirect('/home');
-            } 
+            }
             else 
             {
                 response.redirect('/login');
-            }	
+            }
             response.end();	
 		});
     }
