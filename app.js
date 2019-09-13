@@ -116,7 +116,7 @@ app.get('/logout', function(request, response) {
     if (request.session.loggedin) 
     {
         request.session.destroy();
-        response.clearCookie();
+        response.clearCookie('farmerApp');
         response.clearCookie('userData');
         response.redirect('/login');
     } 
