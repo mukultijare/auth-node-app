@@ -14,7 +14,7 @@
     "express": "^4.17.1",
     "express-error-handler": "*",
     "express-session": "^1.16.2",
-    "node-sessionstorage": "^1.0.0",
-    "pg": "^7.12.1"
+    "pg": "^7.12.1",
+    "sessionstorage": "^0.1.0"
   }
 }

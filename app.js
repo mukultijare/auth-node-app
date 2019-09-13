@@ -53,8 +53,8 @@ app.post('/auth', function(request, response) {
 				request.session.loggedin = true;
                 request.session.user = username;
                 var uname = 'Testing';
-                const storage = require('node-sessionstorage');
-                storage.setItem('foo', uname);
+                var sessionstorage = require('sessionstorage');
+                sessionstorage.setItem('foo', uname);
 				response.redirect('/home');
             }
             else 
