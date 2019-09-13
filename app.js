@@ -117,6 +117,7 @@ app.get('/logout', function(request, response) {
     {
         request.session.destroy();
         response.clearCookie();
+        response.clearCookie('userData');
         response.redirect('/login');
     } 
     else 
