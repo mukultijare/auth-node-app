@@ -17,7 +17,7 @@ client.connect();
 //------------------------------------
 
 //Session Handler
-const session = require('express-session');
+var session = require('client-sessions');
 app.use(session({
     secret: 'secret',
     name: 'farmerApp',
