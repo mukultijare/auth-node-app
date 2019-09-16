@@ -20,10 +20,8 @@ client.connect();
 //const session = require('express-session');
 var session = require('client-sessions');
 app.use(session({
-    secret: 'secret',
-    name: 'farmerApp',
-	resave: true,
-    saveUninitialized: true,
+    cookieName: 'session',
+    secret: 'random_string_goes_here',
     duration: 60000,
     activeDuration : 60000
     
