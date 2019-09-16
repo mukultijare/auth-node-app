@@ -54,7 +54,7 @@ app.post('/auth', function(request, response) {
             if (results.rows.length > 0) 
             {
 				request.session.loggedin = true;
-                
+                request.session.user = username;
                 response.cookie("userData", request.session.user); 
 				response.redirect('/home');
             }
