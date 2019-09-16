@@ -2,7 +2,7 @@ var express = require('express'),
     bodyParser = require('body-parser'),    
     errorHandler = require('express-error-handler'),    
     app = express();
-
+    var localStorage = require('localStorage');
 let cookieParser = require('cookie-parser'); 
 app.use(cookieParser()); 
 
@@ -38,6 +38,7 @@ app.get('/login', function(request, response){
 });
 
 
+
 app.post('/auth', function(request, response) { 
     var username = request.body.uname;
     var password = request.body.upwd;
@@ -52,7 +53,7 @@ app.post('/auth', function(request, response) {
             {
 				//request.session.loggedin = true;
                 request.session.user = username;
-                
+                localStorage.setItem('myKey', request.session.user);
                 response.cookie("userData", request.session.user); 
 				response.redirect('/home');
             }
