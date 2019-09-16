@@ -25,7 +25,7 @@ app.use(session({
     saveUninitialized: true,
     cookie: {
         secure: true,
-        expires: 60000,
+        duration : 60000,
         activeDuration : 60000
     }
 }));
