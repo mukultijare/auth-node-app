@@ -23,10 +23,9 @@ app.use(session({
     name: 'farmerApp',
 	resave: true,
     saveUninitialized: true,
-    cookie: {
-        duration: 60000,
-        activeDuration : 60000
-    }
+    duration: 60000,
+    activeDuration : 60000
+    
 }));
 //--------------------------
 
