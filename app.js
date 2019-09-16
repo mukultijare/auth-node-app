@@ -21,11 +21,12 @@ const session = require('express-session');
 app.use(session({
     secret: 'secret',
     name: 'farmerApp',
-	resave: false,
+	resave: true,
     saveUninitialized: true,
     cookie: {
         secure: true,
-        duration : 60000
+        duration : 60000,
+        activeDuration : 60000
     }
 }));
 //--------------------------
