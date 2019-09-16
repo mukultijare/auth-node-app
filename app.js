@@ -17,9 +17,9 @@ client.connect();
 //------------------------------------
 
 //Session Handler
-const session = require('express-session');
-var sessionn = require('client-sessions');
-app.use(sessionn({
+//const session = require('express-session');
+var session = require('client-sessions');
+app.use(session({
     secret: 'secret',
     name: 'farmerApp',
 	resave: true,
@@ -52,7 +52,7 @@ app.post('/auth', function(request, response) {
         {
             if (results.rows.length > 0) 
             {
-				request.session.loggedin = true;
+				//request.session.loggedin = true;
                 request.session.user = username;
                 
                 response.cookie("userData", request.session.user); 
@@ -102,7 +102,7 @@ app.get('/signup', function(request, response) {
 });
 
 app.get('/home', function(request, response) {
-    if (request.session.loggedin) 
+    if (request.session.user) 
     {
 
         response.sendfile(__dirname + '/home.html');
@@ -114,7 +114,7 @@ app.get('/home', function(request, response) {
 });
 
 app.get('/logout', function(request, response) {
-    if (request.session.loggedin) 
+    if (request.session.user) 
     {
         request.session.destroy();
         response.clearCookie('farmerApp');
