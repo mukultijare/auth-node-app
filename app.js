@@ -21,10 +21,12 @@ const session = require('express-session');
 app.use(session({
     secret: 'secret',
     name: 'farmerApp',
-	resave: true,
+	resave: false,
     saveUninitialized: true,
     cookie: {
-        expires: 120000
+        secure: true,
+        expires: 60000,
+        activeDuration : 60000
     }
 }));
 //--------------------------
@@ -52,12 +54,11 @@ app.post('/auth', function(request, response) {
             if (results.rows.length > 0) 
             {
 				request.session.loggedin = true;
-                request.session.user = username;
                 
                 response.cookie("userData", request.session.user); 
 				response.redirect('/home');
             }
-            else 
+            else
             {
                 response.redirect('/login');
             }
@@ -84,11 +85,11 @@ app.post('/register', function(request, response) {
                 if (result.rows.length > 0) 
                 {
                     response.redirect('/login');
-                } 
+                }
                 else 
                 {
                     response.redirect('/signup');
-                }	
+                }
                 response.end();	
             });
 		});
@@ -103,7 +104,6 @@ app.get('/signup', function(request, response) {
 app.get('/home', function(request, response) {
     if (request.session.loggedin) 
     {
-
         response.sendfile(__dirname + '/home.html');
     }
     else
