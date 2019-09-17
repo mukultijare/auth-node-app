@@ -6,6 +6,8 @@
         <a href="/logout" class="cancelbtn">Logout</a>
     </body>
     <script>
+        let data = sessionStorage.getItem('myKey');
+        console.log(data);
         var cname = 'userData';
         var name = cname + "=";
         var decodedCookie = decodeURIComponent(document.cookie);

@@ -20,16 +20,15 @@ client.connect();
 //const session = require('express-session');
 var session = require('client-sessions');
 app.use(session({
-    cookieName: 'session',
+    cookieName: 'farmerApp',
     secret: 'random_string_goes_here',
     duration: 60000,
     activeDuration : 30000
-    
 }));
 //--------------------------
 
 
-app.get('/' , function(request,response) {
+app.get('/', function(request,response) {
     response.redirect('/login');
 }); 
 
