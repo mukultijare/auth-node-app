@@ -54,8 +54,7 @@ app.post('/auth', function(request, response) {
 				//request.session.loggedin = true;
                 request.session.user = username;
                 //localStorage.setItem('myKey', request.session.user)
-                response.cookie("userData", request.session.user); 
-                response.localStorage("myKey", request.session.user);
+                response.cookie("userData", request.session.user);
 				response.redirect('/home');
             }
             else 
