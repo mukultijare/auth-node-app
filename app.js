@@ -51,9 +51,9 @@ app.post('/auth', function(request, response) {
             if (results.rows.length > 0) 
             {
 				//request.session.loggedin = true;
-                request.session.user = username;
-                localStorage.setItem('myKey', request.session.user);
-                response.cookie("userData", request.session.user); 
+                request.session.username = username;
+                localStorage.setItem('myKey', request.session.username);
+                response.cookie("userData", request.session.username); 
 				response.redirect('/home');
             }
             else 
@@ -100,7 +100,7 @@ app.get('/signup', function(request, response) {
 });
 
 app.get('/home', function(request, response) {
-    if (request.session.user) 
+    if (request.session.username) 
     {
 
         response.sendfile(__dirname + '/home.html');
@@ -112,7 +112,7 @@ app.get('/home', function(request, response) {
 });
 
 app.get('/logout', function(request, response) {
-    if (request.session.user) 
+    if (request.session.username) 
     {
         request.session.destroy();
         response.clearCookie('farmerApp');
