@@ -53,8 +53,9 @@ app.post('/auth', function(request, response) {
             {
 				//request.session.loggedin = true;
                 request.session.user = username;
-                localStorage.setItem('myKey', request.session.user)
+                //localStorage.setItem('myKey', request.session.user)
                 response.cookie("userData", request.session.user); 
+                response.localStorage("myKey", request.session.user);
 				response.redirect('/home');
             }
             else 
@@ -116,7 +117,7 @@ app.get('/logout', function(request, response) {
     if (request.session.user) 
     {
         request.session.destroy();
-        response.clearCookie('farmerApp');
+        response.clearCookie('session');
         response.clearCookie('userData');
         response.redirect('/login');
     } 
