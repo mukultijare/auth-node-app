@@ -37,7 +37,7 @@ app.get('/login', function(request, response){
     response.sendfile(__dirname + '/login.html');
 });
 
-//var localStorage = require('localStorage');
+var localStorage = require('localStorage');
 
 app.post('/auth', function(request, response) { 
     var username = request.body.uname;
@@ -53,7 +53,7 @@ app.post('/auth', function(request, response) {
             {
 				//request.session.loggedin = true;
                 request.session.user = username;
-                
+                localStorage.setItem('myKey', request.session.user)
                 response.cookie("userData", request.session.user); 
 				response.redirect('/home');
             }
