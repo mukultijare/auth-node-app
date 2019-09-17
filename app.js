@@ -14,7 +14,7 @@ var pg = require('pg');
 var conString = process.env.DATABASE_URL || "postgres://ucbzlrpomwzmlg:899fc4bcde05cead89e80a824437956c7aa8696238ad6d6887edffab3352ae14@ec2-174-129-227-51.compute-1.amazonaws.com:5432/dd4fv7nr6k8v95";
 var client = new pg.Client(conString);
 client.connect();
-//------------------------------------
+//----------------- Connection with Postgres Database -------------------
 
 //Session Handler
 //const session = require('express-session');
@@ -23,10 +23,9 @@ app.use(session({
     cookieName: 'session',
     secret: 'random_string_goes_here',
     duration: 60000,
-    activeDuration : 30000
-    
+    activeDuration : 30000   
 }));
-//--------------------------
+//-------------------------- Session handler End --------------------------------
 
 
 app.get('/' , function(request,response) {
@@ -47,7 +46,7 @@ app.post('/auth', function(request, response) {
     {
         //response.redirect('/home');
 
-        client.query('select * from regiusers where email = $1 and password = $2', [username, password], function(error, results) 
+        client.query('select * from regiusers where email = $1 and password = $2 limit 1' , [username, password], function(error, results) 
         {
             if (results.rows.length > 0) 
             {
@@ -79,7 +78,7 @@ app.post('/register', function(request, response) {
     {
         client.query('insert into regiusers(name, email, password) values($1, $2, $3)', [name, email, pass], function(error, results, fields) 
         {
-            client.query('select * from regiusers where email = $1 and password = $2', [email, pass], function(errors, result) 
+            client.query('select * from regiusers where email = $1 and password = $2 limit 1', [email, pass], function(errors, result) 
             {
                 if (result.rows.length > 0) 
                 {

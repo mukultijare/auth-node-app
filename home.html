@@ -78,7 +78,7 @@
             let data = sessionStorage.getItem('key');
             var decrypted = CryptoJS.AES.decrypt(data, "Secret Passphrase");
             var plaintext = decrypted.toString(CryptoJS.enc.Utf8);
-
+            document.getElementById("p1").innerHTML = plaintext;
             console.log(plaintext);
         }
 
