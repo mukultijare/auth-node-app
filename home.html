@@ -69,7 +69,7 @@
 
         if(use != '')
         {
-            browser.cookies.remove('userData');
+            //browser.cookies.remove('userData');
             var encrypted = CryptoJS.AES.encrypt(use, "Secret Passphrase");
             sessionStorage.setItem('key', encrypted);
 
