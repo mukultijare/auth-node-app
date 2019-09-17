@@ -2,7 +2,7 @@ var express = require('express'),
     bodyParser = require('body-parser'),    
     errorHandler = require('express-error-handler'),    
     app = express();
-    var localStorage = require('localStorage');
+
 let cookieParser = require('cookie-parser'); 
 app.use(cookieParser()); 
 
@@ -20,15 +20,16 @@ client.connect();
 //const session = require('express-session');
 var session = require('client-sessions');
 app.use(session({
-    cookieName: 'farmerApp',
+    cookieName: 'session',
     secret: 'random_string_goes_here',
     duration: 60000,
     activeDuration : 30000
+    
 }));
 //--------------------------
 
 
-app.get('/', function(request,response) {
+app.get('/' , function(request,response) {
     response.redirect('/login');
 }); 
 
@@ -36,7 +37,7 @@ app.get('/login', function(request, response){
     response.sendfile(__dirname + '/login.html');
 });
 
-
+//var localStorage = require('localStorage');
 
 app.post('/auth', function(request, response) { 
     var username = request.body.uname;
@@ -51,9 +52,9 @@ app.post('/auth', function(request, response) {
             if (results.rows.length > 0) 
             {
 				//request.session.loggedin = true;
-                request.session.username = username;
-                localStorage.setItem('myKey', request.session.username);
-                response.cookie("userData", request.session.username); 
+                request.session.user = username;
+                
+                response.cookie("userData", request.session.user); 
 				response.redirect('/home');
             }
             else 
@@ -100,7 +101,7 @@ app.get('/signup', function(request, response) {
 });
 
 app.get('/home', function(request, response) {
-    if (request.session.username) 
+    if (request.session.user) 
     {
 
         response.sendfile(__dirname + '/home.html');
@@ -112,7 +113,7 @@ app.get('/home', function(request, response) {
 });
 
 app.get('/logout', function(request, response) {
-    if (request.session.username) 
+    if (request.session.user) 
     {
         request.session.destroy();
         response.clearCookie('farmerApp');
