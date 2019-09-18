@@ -156,7 +156,7 @@ app.post('/abnConnect', function(req, res) {
             {
                 zlib.gunzip(body, function(err, dezipped) 
                 {
-                    res.send(dezipped)
+                    res.send("dezipped :"  dezipped.toString());
                     //callback(.toString());
                 });
                 
