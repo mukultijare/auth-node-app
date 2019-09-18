@@ -152,7 +152,7 @@ app.post('/abnConnect', function(req, res) {
         {
             if (error) throw new Error(error);
             //res.send(response);
-            if(res.response.statusCode == 200)
+            if(body)
             {
                 var deCompressedJSONFile = function(next, body, results) {
                     console.log("deCompressedJSONFile function started", body);
