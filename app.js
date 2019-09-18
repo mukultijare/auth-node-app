@@ -164,6 +164,7 @@ app.post('/abnConnect', function(req, res) {
                     //var json_string = dezipped.toString('utf-8');
                     //var json = JSON.parse(json_string);
                     res.send(dezipped);
+                    console.log(dezipped);
                     // Process the json..
                   });
                 } else {
