@@ -3,6 +3,7 @@ var express = require('express'),
     errorHandler = require('express-error-handler'),    
     app = express();
 
+var request = require("request");
 let cookieParser = require('cookie-parser'); 
 app.use(cookieParser()); 
 
@@ -125,6 +126,38 @@ app.get('/logout', function(request, response) {
 	}
 	response.end();
 });
+
+app.post('/abnConnect', function(req, res) {
+    var abn = req.body.abnno;
+    if(abn)
+    {
+        var options = {
+            method: 'GET',
+            url: 'http://www.abr.business.gov.au/ABN/View',
+            qs: { id: abn },
+            headers: 
+            { 
+                'cache-control': 'no-cache',
+                Connection: 'keep-alive',
+                'Accept-Encoding': 'gzip, deflate',
+                Host: 'www.abr.business.gov.au',
+                //'Postman-Token': '4e1879da-692f-499c-9948-de577e3b8b89,970dc90d-b5b0-48a5-bcb3-3f6cb81644c1',
+                //'Cache-Control': 'no-cache',
+                Accept: '*/*',
+                'User-Agent': 'PostmanRuntime/7.16.3' 
+            } 
+        };
+        
+        request(options, function (error, response, body) 
+        {
+            if (error) throw new Error(error);
+            res.send(body);
+          console.log(body);
+        });
+    }
+});
+
+
 
 app.set('port', process.env.PORT || 3001);
 app.use(errorHandler());

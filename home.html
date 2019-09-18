@@ -15,6 +15,78 @@
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+
+        <style>
+            * {box-sizing: border-box}
+    
+            /* Full-width input fields */
+            input[type=text]{
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
+            }
+    
+            input[type=text]:focus {
+            background-color: #ddd;
+            outline: none;
+            }
+    
+            hr {
+            border: 1px solid #f1f1f1;
+            margin-bottom: 25px;
+            }
+    
+            /* Set a style for all buttons */
+            button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            opacity: 0.9;
+            }
+    
+            button:hover {
+            opacity:1;
+            }
+    
+            /* Extra styles for the cancel button */
+            .cancelbtn {
+            padding: 14px 20px;
+            background-color: #f44336;
+            }
+    
+            /* Float cancel and signup buttons and add an equal width */
+            .cancelbtn, .signupbtn {
+            float: left;
+            width: 50%;
+            }
+    
+            /* Add padding to container elements */
+            .container {
+            padding: 16px;
+            }
+    
+            /* Clear floats */
+            .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+            }
+    
+            /* Change styles for cancel button and signup button on extra small screens */
+            @media screen and (max-width: 300px) {
+            .cancelbtn, .signupbtn {
+                width: 100%;
+            }
+            }
+    
+            </style>
     </head>
     <body>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -40,6 +112,10 @@
             <div class="col-sm-4">
                 <h3>Hello.....<span id="p1"></span></h3>
 
+                <form action="/abnConnect" method="POST">
+                    <input type="text" placeholder="Enter ABN No here" name="abnno" id="abn" />
+                    <button type="submit" name="btnSearch">Search</button>
+                </form>
             </div>
             <div class="col-sm-4"></div>
             
