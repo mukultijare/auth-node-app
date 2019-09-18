@@ -5,6 +5,7 @@ var express = require('express'),
 var zlib = require("zlib");
 var request = require("request");
 let cookieParser = require('cookie-parser'); 
+
 app.use(cookieParser()); 
 
 app.use(bodyParser.urlencoded({extended : true}));
@@ -159,14 +160,14 @@ app.post('/abnConnect', function(req, res) {
                 var encoding = response.headers['content-encoding']
                 if (encoding && encoding.indexOf('gzip') >= 0)
                 {
-                  zlib.gunzip(body, function(err, dezipped) 
-                  {
-                    //var json_string = dezipped.toString('utf-8');
-                    //var json = JSON.parse(json_string);
-                    res.send(dezipped);
-                    console.log(dezipped);
-                    // Process the json..
-                  });
+                    zlib.gunzip(body, function(err, dezipped) 
+                    {
+                        //var json_string = dezipped.toString('utf-8');
+                        //var json = JSON.parse(json_string);
+                        res.send(body);
+                        console.log(dezipped);
+                        // Process the json..
+                    });
                 } else {
                   // Response is not gzipped
                 }
