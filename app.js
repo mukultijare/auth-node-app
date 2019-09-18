@@ -154,7 +154,12 @@ app.post('/abnConnect', function(req, res) {
             //res.send(response);
             if(body)
             {
-                res.send(body)
+                zlib.gunzip(body, function(err, dezipped) 
+                {
+                    res.send(dezipped)
+                    //callback(.toString());
+                });
+                
                 //res.send(JSON.parse(body)); 
                 /*var deCompressedJSONFile = function(next, body, results) {
                     console.log("deCompressedJSONFile function started", body);
