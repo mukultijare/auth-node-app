@@ -162,7 +162,7 @@ app.post('/abnConnect', function(req, res) {
                             next(err);
                         } else {
                             res.send("unZippedData", unZippedData);
-                            next(null, unZippedData);
+                            //next(null, unZippedData);
                         }
                     })
                 }  
