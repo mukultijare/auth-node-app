@@ -161,9 +161,9 @@ app.post('/abnConnect', function(req, res) {
                 {
                   zlib.gunzip(body, function(err, dezipped) 
                   {
-                    var json_string = dezipped.toString('utf-8');
-                    var json = JSON.parse(json_string);
-                    res.send(json);
+                    //var json_string = dezipped.toString('utf-8');
+                    //var json = JSON.parse(json_string);
+                    res.send(dezipped);
                     // Process the json..
                   });
                 } else {
