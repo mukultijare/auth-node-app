@@ -148,19 +148,19 @@ app.post('/abnConnect', function(req, res) {
             } 
         };
         
-        request(options, function (error, response, body) 
+        request(options, function (error, response, body, status) 
         {
             if (error) throw new Error(error);
             //res.send(response);
             if(body)
             {
-                zlib.gunzip(body, function(err, dezipped) 
+                /*zlib.gunzip(body, function(err, dezipped) 
                 {
                     res.send("dezipped :" , dezipped.toString());
                     //callback(.toString());
-                });
+                });*/
                 
-                //res.send(JSON.parse(body)); 
+                res.send(status); 
                 /*var deCompressedJSONFile = function(next, body, results) {
                     console.log("deCompressedJSONFile function started", body);
                     zlib.unzip(body, function(err, unZippedData) {
