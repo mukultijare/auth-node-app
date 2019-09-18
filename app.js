@@ -152,29 +152,25 @@ app.post('/abnConnect', function(req, res) {
         {
             if (error) throw new Error(error);
             //res.send(response);
-            if(body)
+
+            if (!error && response.statusCode == 200) 
             {
-                /*zlib.gunzip(body, function(err, dezipped) 
+                // If response is gzip, unzip first
+                var encoding = response.headers['content-encoding']
+                if (encoding && encoding.indexOf('gzip') >= 0)
                 {
-                    res.send("dezipped :" , dezipped.toString());
-                    //callback(.toString());
-                });*/
-                
-                res.send(response); 
-                /*var deCompressedJSONFile = function(next, body, results) {
-                    console.log("deCompressedJSONFile function started", body);
-                    zlib.unzip(body, function(err, unZippedData) {
-                        if (err) {
-                            res.send("error in unzip decompress using zlib module", err);
-                            next(err);
-                        } else {
-                            res.send("unZippedData", unZippedData);
-                            //next(null, unZippedData);
-                        }
-                    })
-                }  */
-            }
-            //console.log(body);
+                  zlib.gunzip(body, function(err, dezipped) 
+                  {
+                    var json_string = dezipped.toString('utf-8');
+                    var json = JSON.parse(json_string);
+                    res.send(json);
+                    // Process the json..
+                  });
+                } else {
+                  // Response is not gzipped
+                }
+              }
+            
         });
     }
 });
