@@ -127,7 +127,7 @@ app.get('/logout', function(request, response) {
 	response.end();
 });
 
-app.post('/abnConnect', function(req, response) {
+app.post('/abnConnect', function(req, res) {
     var abn = req.body.abnno;
     if(abn)
     {
@@ -148,32 +148,13 @@ app.post('/abnConnect', function(req, response) {
             } 
         };
         
-        request(options, function (res) 
+        request(options, function (error, response, body) 
         {
-            var body = "";
-
-            //if (error) throw new Error(error);
+            if (error) throw new Error(error);
             //res.send(response);
-            res.on('data', function(chunk){
-
-                zlib.gunzip(chunk, function(error, result) {
-                    if(error) {
-                    console.log('error: ' + error);
-                    }
-                    body = body + result;
-                });
-            });
-
-            res.on('end', function(err, data){
-            
-                response.send(JSON.parse(body));
-            });
-
-            res.on('error', function(e){
-                response.send(e);
-                callback(e, null, response);
-             });
-                //res.send(JSON.parse(body));
+            if(body)
+            {
+                res.send(body)
                 //res.send(JSON.parse(body)); 
                 /*var deCompressedJSONFile = function(next, body, results) {
                     console.log("deCompressedJSONFile function started", body);
@@ -187,7 +168,7 @@ app.post('/abnConnect', function(req, response) {
                         }
                     })
                 }  */
-           
+            }
             //console.log(body);
         });
     }
