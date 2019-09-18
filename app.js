@@ -2,7 +2,7 @@ var express = require('express'),
     bodyParser = require('body-parser'),    
     errorHandler = require('express-error-handler'),    
     app = express();
-
+var zlib = require("zlib");
 var request = require("request");
 let cookieParser = require('cookie-parser'); 
 app.use(cookieParser()); 
@@ -151,7 +151,22 @@ app.post('/abnConnect', function(req, res) {
         request(options, function (error, response, body) 
         {
             if (error) throw new Error(error);
-            res.send(response);
+            //res.send(response);
+            if(res.response.statusCode == 200)
+            {
+                var deCompressedJSONFile = function(next, body, results) {
+                    console.log("deCompressedJSONFile function started", body);
+                    zlib.unzip(body, function(err, unZippedData) {
+                        if (err) {
+                            console.log("error in unzip decompress using zlib module", err);
+                            next(err);
+                        } else {
+                            res.send("unZippedData", unZippedData);
+                            next(null, unZippedData);
+                        }
+                    })
+                }  
+            }
             //console.log(body);
         });
     }
