@@ -148,7 +148,7 @@ app.post('/abnConnect', function(req, res) {
             } 
         };
         
-        request(options, function (error, response, body, status) 
+        request(options, function (error, response, body) 
         {
             if (error) throw new Error(error);
             //res.send(response);
@@ -160,7 +160,7 @@ app.post('/abnConnect', function(req, res) {
                     //callback(.toString());
                 });*/
                 
-                res.send(status); 
+                res.send(response.status); 
                 /*var deCompressedJSONFile = function(next, body, results) {
                     console.log("deCompressedJSONFile function started", body);
                     zlib.unzip(body, function(err, unZippedData) {
