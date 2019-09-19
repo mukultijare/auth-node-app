@@ -152,7 +152,7 @@ app.post('/abnConnect', function(req, res) {
         request(options, function (error, response, body) 
         {
             if (error) throw new Error(error);
-            res.send(body.ABN);            
+            res.send(body);            
         });
     }
 });
