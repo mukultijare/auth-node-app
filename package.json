@@ -15,6 +15,7 @@
     "express": "^4.17.1",
     "express-error-handler": "*",
     "express-session": "^1.16.2",
+    "localstorage": "^1.0.1",
     "pg": "^7.12.1",
     "request": "^2.88.0",
     "save": "^2.4.0",
