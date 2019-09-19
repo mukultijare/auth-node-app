@@ -140,7 +140,7 @@ app.post('/abnConnect', function(req, res) {
             { 
                 'cache-control': 'no-cache',
                 Connection: 'keep-alive',
-                'Accept-Encoding': 'gzip, deflate',
+                //'Accept-Encoding': 'gzip, deflate',
                 Host: 'www.abr.business.gov.au',
                 //'Postman-Token': '4e1879da-692f-499c-9948-de577e3b8b89,970dc90d-b5b0-48a5-bcb3-3f6cb81644c1',
                 //'Cache-Control': 'no-cache',
@@ -152,27 +152,7 @@ app.post('/abnConnect', function(req, res) {
         request(options, function (error, response, body) 
         {
             if (error) throw new Error(error);
-            //res.send(response);
-
-            if (!error && response.statusCode == 200) 
-            {
-                // If response is gzip, unzip first
-                var encoding = response.headers['content-encoding']
-                if (encoding && encoding.indexOf('gzip') >= 0)
-                {
-                    zlib.gunzip(body, function(err, dezipped) 
-                    {
-                        //var json_string = dezipped.toString('utf-8');
-                        //var json = JSON.parse(json_string);
-                        res.send(body);
-                        console.log(dezipped);
-                        // Process the json..
-                    });
-                } else {
-                  // Response is not gzipped
-                }
-              }
-            
+            res.send(body.ABN);            
         });
     }
 });
