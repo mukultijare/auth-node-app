@@ -38,7 +38,7 @@ app.get('/login', function(request, response){
     response.sendfile(__dirname + '/login.html');
 });
 
-var localStorage = require('localStorage');
+//var localStorage = require('localStorage');
 
 app.post('/auth', function(request, response) { 
     var username = request.body.uname;
